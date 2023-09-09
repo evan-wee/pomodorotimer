@@ -1,5 +1,5 @@
-#Pomodoro Timer
+# Pomodoro Timer
 
 Pomodoro timer with themes from different cartoon characters
 
-##URL##: https://timerpomo.web.app/
+## URL ##: https://timerpomo.web.app/
