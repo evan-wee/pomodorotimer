@@ -269,7 +269,7 @@ body {
   padding:25px;
   border:0px solid black;
   border-radius:1.5rem;
-  box-shadow:5px 5px black;
+  box-shadow:5px 5px rgb(18, 18, 18);
 }
 
 .light {
@@ -310,7 +310,7 @@ body {
   padding:25px;
   border:0px solid black;
   border-radius:1.5rem;
-  box-shadow: 5px 5px #581c6e;
+  box-shadow: 5px 5px #5c1d75;
 
 }
 
@@ -674,12 +674,14 @@ body {
   font-size: 70px;
   font-family: 'Lilita One',cursive;
   color:var(--darktextcolor);
+  text-shadow: 2px 2px 4px #000;
 }
 
 .light h2 {
   font-size: 70px;
   font-family: 'Lilita One',cursive;
   color:var(--lighttextcolor);
+  text-shadow: 2px 2px 4px #bbbbbb;
 }
 
 .gudetama h2 {
@@ -692,24 +694,28 @@ body {
   font-size: 70px;
   font-family: 'Lilita One',cursive;
   color:var(--kuromitextcolor);
+  text-shadow: 2px 2px 3px #000;
 }
 
 .keroppi h2 {
   font-size: 70px;
   font-family: 'Lilita One',cursive;
   color:var(--keroppitextcolor);
+  text-shadow: 1.5px 1.5px 2.5px #000;
 }
 
 .mymelody h2 {
   font-size: 70px;
   font-family: 'Lilita One',cursive;
   color:var(--mymelodytextcolor);
+  text-shadow: 2px 2px 3px #000;
 }
 
 .picklerick h2 {
   font-size: 70px;
   font-family: 'Lilita One',cursive;
   color:var(--picklericktextcolor);
+  text-shadow: 2px 2px 4px #bbbbbb;
 }
 
 .styleButton {
@@ -761,10 +767,21 @@ body {
 	cursor:pointer;
 }
 
+.offCanvas {
+	text-align:center;
+}
+
 .offCanvas a {	
 	font-family:'Lilita One', cursive;
-	color:#576edd;
-	font-size:18px;
+	color:#157eb2;
+	font-size:24px;
+	margin-left:20px;
+	margin-right:20px;
+	transition: transform .3s;
+}
+
+.offCanvas a:hover {
+	transform:scale(1.5);
 }
 
 .offCanvasTitle {
@@ -846,9 +863,11 @@ body {
 	#timer input {
 		width:20rem;
 		margin-left:0px;
+		margin-top:10px;
 	}
 	
 	#timer img {
 		width:70px;
-	}
+	}	
+
 }

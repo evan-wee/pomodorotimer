@@ -135,7 +135,13 @@ const handleContactPageChange = () => {
 	</form>
 	
 	<br/>
+
+
 	<Link to='/contact' onClick={handleContactPageChange}>Contact</Link>
+
+	<Link to='https://github.com/evan-wee/pomodorotimer' target='_blank'>GitHub</Link>
+
+	
 
   </Offcanvas.Body>
 
