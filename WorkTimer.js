@@ -45,13 +45,14 @@ const WorkTimer = ({theme}) => {
       const now = new Date().getTime();
       const distance = targetDateRef.current - now;
 
+
       if (distance < 0) {
         clearInterval(intervalRef.current);
         setMinutes(0);
         setSeconds(0);
-		
         // Handle what happens when the timer reaches 0
-        if ( seconds === 0 && minutes === 0 && isWorking && isBreak === false && isLongBreak === false ) {
+        if ( isWorking && isBreak === false && isLongBreak === false ) {
+
           setIsActive(false)
           setStatus('Break Time!');
           document.title = 'Break Time!';
@@ -76,7 +77,8 @@ const WorkTimer = ({theme}) => {
         }
 	
         //break timer done
-        if ( seconds === 0 && minutes === 0 && isWorking === false && isBreak && isLongBreak === false ) {
+        if ( isWorking === false && isBreak && isLongBreak === false ) {
+
           setIsActive(false);
           setStatus('Back to work');
           setSeconds(0);
@@ -87,7 +89,7 @@ const WorkTimer = ({theme}) => {
         }
 	
         //long break is done
-        if ( seconds === 0 && minutes === 0 && isLongBreak && isBreak === false && isWorking === false ) {
+        if ( isLongBreak && isBreak === false && isWorking === false ) {
           setIsActive(false);
           setStatus('Back to Work!');
           setSeconds(0);
