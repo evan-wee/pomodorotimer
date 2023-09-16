@@ -526,6 +526,7 @@ body {
   outline:none;
   border:0px solid black;
 	border-top:2px solid var(--darktextcolor);
+	border-radius:0px;
 	margin-top:15px;
   margin-left:10px;
 	width:20rem;

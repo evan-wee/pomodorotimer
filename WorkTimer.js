@@ -3,6 +3,7 @@ import './App.css';
 import {MdWork} from 'react-icons/md';
 import {IoMdRestaurant} from 'react-icons/io';
 import {BsPersonWorkspace} from 'react-icons/bs';
+import beepSound from './beep.wav';
 
 const WorkTimer = ({theme}) => {
   const [minutes,setMinutes] = useState(25);
@@ -14,6 +15,8 @@ const WorkTimer = ({theme}) => {
   const [isLongBreak,setIsLongBreak] = useState(false);
   const [pomodoroCount, setPomodoroCount] = useState(0);
   const [pomodoroInterval, setPomodoroInterval] = useState(4);
+  const [isTimerDone, setIsTimerDone] = useState(false);
+  
 
   const reset = () => {
     setSeconds(0);
@@ -34,8 +37,19 @@ const WorkTimer = ({theme}) => {
     if (!isActive) {
       // Update the target date when the timer is started
       targetDateRef.current = new Date().getTime() + minutes * 60 * 1000 + seconds * 1000;
+      if (isWorking) {
       setStatus('Working');
       document.title = 'Working';
+      }
+      else if (isBreak) {
+        setStatus('Break Time!');
+        document.title = 'Break Time!';
+      }
+      else if (isLongBreak) {
+        setStatus('Long Break');
+        document.title = 'Long Break';
+      }
+
     }
     setIsActive(!isActive);
   };
@@ -52,15 +66,17 @@ const WorkTimer = ({theme}) => {
         setSeconds(0);
         // Handle what happens when the timer reaches 0
         if ( isWorking && isBreak === false && isLongBreak === false ) {
-
           setIsActive(false)
           setStatus('Break Time!');
           document.title = 'Break Time!';
           setPomodoroCount(pomodoroCount => pomodoroCount + 1);
+
+          setIsTimerDone(true);
   
           if ( pomodoroCount < (pomodoroInterval-1) ) {
             setIsBreak(true);
-            setStatus('Break time')
+            setStatus('Break time');
+			      document.title = 'Break Time!';
             setSeconds(0);
             setMinutes(5);
             setIsWorking(false);
@@ -86,6 +102,8 @@ const WorkTimer = ({theme}) => {
           setIsWorking(true);
           setIsBreak(false);
           document.title = 'Back to work!';
+
+          setIsTimerDone(true);
         }
 	
         //long break is done
@@ -98,6 +116,8 @@ const WorkTimer = ({theme}) => {
           setIsLongBreak(false);
           setPomodoroCount(0);
           document.title = 'Back to work!';
+
+          setIsTimerDone(true);
         }
       } else {
         const newMinutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -117,6 +137,14 @@ const WorkTimer = ({theme}) => {
 
     return () => clearInterval(intervalRef.current);
   }, [isActive]); // Only re-run the effect if isActive changes
+
+  useEffect(() => {
+    if (isTimerDone) {
+      const audio = new Audio(beepSound);
+      audio.play();
+      setIsTimerDone(false);
+    }
+  }, [isTimerDone]);
 
   return (
     <div id='timer' className={theme}> 
